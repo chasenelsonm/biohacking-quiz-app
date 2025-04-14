@@ -1,0 +1,21 @@
+services:
+  localstack:
+    container_name: serverless-shopping-cart-localstack
+    image: localstack/localstack-pro
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=serverless,cloudformation,apigateway,lambda,iam,s3,dynamodb,cognito
+      - HOSTNAME=localhost
+      - LOCALSTACK_HOST=localhost
+      - GATEWAY_LISTEN=4566
+      - PERSISTENCE=1
+      - ENV=local
+      - TAGS=stage=local
+      - LOCALSTACK_AUTH_TOKEN=ls-zEceRAki-ZOvE-mAHE-kAce-VihE2782cd98
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - LAMBDA_EXECUTOR=docker
+    volumes:
+      - "C:/Users/chase/Desktop/localstack/datadir:/var/localstack/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"

@@ -1,0 +1,34 @@
+services:
+  localstack:
+    container_name: localstack-biohacking
+    image: localstack/localstack-pro
+    ports:
+      - "4567:4566" # LocalStack Gateway
+      - "4568:4568" # DynamoDB Streams  
+    environment:
+      - SERVICES=serverless,cloudformation,apigateway,lambda,iam,s3,dynamodb
+      - HOSTNAME=localhost
+      - LOCALSTACK_HOST=localhost
+      - GATEWAY_LISTEN=4567
+      - PERSISTENCE=1
+      - ENV=local
+      - TAGS=stage=local
+      - LOCALSTACK_AUTH_TOKEN=ls-zEceRAki-ZOvE-mAHE-kAce-VihE2782cd98
+      - DEBUG=1
+    volumes:
+      - "C:/Users/chase/Desktop/localstack/datadir:/var/localstack/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  quiz-api:
+    container_name: quiz-api
+    build:
+      context: ./quiz-api-app
+    ports:
+      - "3000:3000" # Expose the Quiz API on port 3000
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./quiz-api-app:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm start

@@ -1,0 +1,63 @@
+──────────────────────────────────────── 1. Testing the Application
+
+A. Start the Application with Docker Compose
+    • Ensure Docker is installed and running on your system.
+    • Open a terminal and navigate to the project directory:
+        cd C:\Users\chase\Desktop\localstack\biohacking-quiz-application\quiz-api-app
+    • Start the app with Docker Compose:
+        docker-compose up
+    • Verify it’s running by checking the logs or accessing the API at http://localhost:3000.
+
+B. Test All Endpoints
+
+• GET /api/quizzes
+    Use Postman or curl:
+        curl http://localhost:3000/api/quizzes
+    Verify that the quiz data appears.
+
+• POST /api/quizzes
+    From Postman, create a new quiz by setting the method to POST, URL to http://localhost:3000/api/quizzes, header Content-Type: application/json, and use a sample JSON (or the multi-quiz JSON if your backend supports arrays).
+    Verify the new quiz is created.
+
+• PUT /api/quizzes/{id}
+    Update an existing quiz by sending a proper JSON payload to the PUT endpoint. Verify the updated data returns when using GET.
+
+• DELETE /api/quizzes/{id}
+    Send a DELETE request and then use GET to ensure the quiz has been removed.
+
+C. Manually Test in VS Code
+If needed, use the integrated Terminal in VS Code to execute docker-compose up and use Postman within VS Code to verify endpoints quickly.
+
+──────────────────────────────────────── 2. Preparing for the Recruiter Presentation
+
+A. Update Documentation
+• Ensure your README includes:
+ – An Overview (purpose, tech stack, LocalStack/DynamoDB simulation).
+ – Setup Instructions, including environment variables (e.g., .env with PORT=3000).
+ – Running Instructions for both npm (manual/prestart) and pm2.
+ – API Endpoints details (GET, POST, PUT, DELETE) with example payloads.
+ – Troubleshooting tips for port conflicts.
+
+B. Package the Project
+• Make a Git commit and push your changes.
+• Optionally create a zip of the project directory or host it on a GitHub repository.
+• Ensure a clear structure (source code in src/, README, .env file, etc.).
+
+C. Draft the Presentation Email
+Use a concise email body (you can refer to the sample from earlier). For example:
+
+  Subject: Quiz API Application Submission
+     Hi [Recruiter Name],      Please find attached (or linked) my Quiz API Application, developed using Node.js, Express, LocalStack for AWS DynamoDB simulation, and managed with pm2 for robust process handling. The README details setup, running instructions, and API endpoints.      I look forward to your feedback.      Best regards,
+  [Your Name]
+
+D. Demo Preparation
+• For the live demo, open a terminal as Administrator and use pm2 commands to start/stop/restart the app.
+• Have Postman open with testing requests ready to show CRUD operations.
+
+──────────────────────────────────────── Final Check:
+
+Run pm2 list to confirm your process is running.
+Use Postman/curl to test all endpoints.
+Read through the updated README to ensure clarity.
+Prepare your demo email and any slides highlighting key features and architecture.
+Following these steps should help you both verify your application functions correctly and present it efficiently to your recruiter. Let me know if you need any further tweaks or run-throughs before the demo!

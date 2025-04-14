@@ -1,0 +1,22 @@
+GET http://localhost:3000/api/quizzes
+
+POST http://localhost:3000/api/quizzes
+Content-Type: application/json
+
+{
+    "id": "1",
+    "question": "What is the capital of France?",
+    "options": ["Paris", "London", "Berlin", "Madrid"],
+    "correctAnswer": "Paris"
+}
+
+PUT http://localhost:3000/api/quizzes/1
+Content-Type: application/json
+
+{
+    "question": "Updated Question?",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correctAnswer": "Option A"
+}
+
+DELETE http://localhost:3000/api/quizzes/1

@@ -1,0 +1,5 @@
+#You can start the Docker container simply by executing the following docker run command:
+$ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
+
+
+ephemeral-applicationfork url: localstack-samples/sample-notes-app-dynamodb-lambda-apigateway:main
