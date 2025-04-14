@@ -1,4 +1,4 @@
-import { DynamoDBClient, CreateTableCommand, ScalarAttributeType } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, CreateTableCommand, ScalarAttributeType, KeyType } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, ScanCommand, GetCommand, PutCommand, UpdateCommand, DeleteCommand } from "@aws-sdk/lib-dynamodb";
 
 // Configure AWS SDK with dummy credentials for LocalStack
@@ -19,7 +19,7 @@ export const createQuizTable = async (): Promise<void> => {
     const params = {
         TableName: "Quizzes",
         KeySchema: [
-            { AttributeName: "id", KeyType: "HASH" }
+            { AttributeName: "id", KeyType: "HASH" as KeyType }
         ],
         AttributeDefinitions: [
             { AttributeName: "id", AttributeType: ScalarAttributeType.S }
@@ -77,7 +77,7 @@ export const createQuiz = async (quiz: any): Promise<any> => {
         await dynamoDB.send(new PutCommand(params));
         return quiz;
     } catch (error) {
-        console.error("Error creating quiz:", error);
+        console.error("Error creating quiz:", error, "Params:", params);
         throw new Error("Could not create quiz");
     }
 };

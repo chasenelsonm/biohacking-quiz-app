@@ -124,30 +124,19 @@ You can run the application with a prestart script that automatically kills any 
    npm start
    ```
 
-### Using pm2 (Recommended for Process Management)
-We have integrated `pm2` for easier process management. PM2 handles starting, stopping, and restarting your application without manual intervention.
+## Process Management with Docker
 
-1. **Install pm2 globally** (if you haven't already):
-   ```bash
-   npm install -g pm2
-   ```
-2. **Start the application using pm2**:
-   ```bash
-   pm2 start src/index.ts --name quiz-api --interpreter ts-node
-   ```
-3. **Stop or Restart the Application**:
-   - To stop the application:
-     ```bash
-     pm2 stop quiz-api
-     ```
-   - To restart the application:
-     ```bash
-     pm2 restart quiz-api
-     ```
-4. **List pm2 Processes**:
-   ```bash
-   pm2 list
-   ```
+We now use Docker instead of pm2 for process management. To run the Quiz API application using Docker, use the following commands:
+
+To start the application:
+```bash
+docker-compose up --build
+```
+
+To stop the application:
+```bash
+docker-compose down
+```
 
 ### Additional Notes
 

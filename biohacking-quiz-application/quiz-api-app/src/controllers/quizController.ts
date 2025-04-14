@@ -17,6 +17,7 @@ class QuizController {
     }
 
     async getQuizzes(req: Request, res: Response): Promise<void> {
+        console.log('getQuizzes handler invoked'); // newly added log
         try {
             const quizzes = await this.quizService.getAllQuizzes();
             res.status(200).json(quizzes);
@@ -26,6 +27,7 @@ class QuizController {
     }
 
     async getQuizById(req: Request, res: Response): Promise<void> {
+        console.log(`getQuizById handler invoked for id: ${req.params.id}`); // newly added log
         const { id } = req.params;
         try {
             const quiz = await this.quizService.getQuizById(id);
@@ -40,6 +42,7 @@ class QuizController {
     }
 
     async createQuiz(req: Request, res: Response): Promise<void> {
+        console.log('createQuiz handler invoked with body:', req.body); // newly added log
         const newQuiz = req.body;
         try {
             const createdQuiz = await this.quizService.createQuiz(newQuiz);
@@ -50,6 +53,7 @@ class QuizController {
     }
 
     async updateQuiz(req: Request, res: Response): Promise<void> {
+        console.log(`updateQuiz handler invoked for id: ${req.params.id}`); // newly added log
         const { id } = req.params;
         const updatedQuizData = req.body;
         try {
@@ -65,6 +69,7 @@ class QuizController {
     }
 
     async deleteQuiz(req: Request, res: Response): Promise<void> {
+        console.log(`deleteQuiz handler invoked for id: ${req.params.id}`); // newly added log
         const { id } = req.params;
         try {
             const deleted = await this.quizService.deleteQuiz(id);

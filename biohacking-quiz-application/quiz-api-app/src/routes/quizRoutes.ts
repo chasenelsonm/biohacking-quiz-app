@@ -1,16 +1,11 @@
-import { Router } from 'express';
-import QuizController from '../controllers/quizController';
-import * as quizService from '../services/localstackService'; // Import the quiz service
+import { Express } from 'express';
+import { getAllQuizzes, createQuiz, getQuizById, updateQuiz, deleteQuiz } from '../controllers/quizController';
 
-const router = Router();
-const quizController = new QuizController(quizService); // Pass the quizService to the constructor
-
-export function setRoutes(app: import('express').Application) { // Explicitly type the app parameter
-    app.use('/api/quizzes', router);
-
-    router.get('/', quizController.getQuizzes.bind(quizController));
-    router.get('/:id', quizController.getQuizById.bind(quizController));
-    router.post('/', quizController.createQuiz.bind(quizController));
-    router.put('/:id', quizController.updateQuiz.bind(quizController));
-    router.delete('/:id', quizController.deleteQuiz.bind(quizController));
-}
+export const setRoutes = (app: Express) => {
+    // Adjust the paths if needed
+    app.get('/quizzes', getAllQuizzes);
+    app.post('/quizzes', createQuiz);
+    app.get('/quizzes/:id', getQuizById);
+    app.put('/quizzes/:id', updateQuiz);
+    app.delete('/quizzes/:id', deleteQuiz);
+};
